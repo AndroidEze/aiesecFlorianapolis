@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,10 +27,8 @@ import me.ezeezegg.financialenterprise.controllers.AppVolleyController;
 public class MainActivity extends Activity {
 
     // json object response url
-    private String urlJsonObj = "http://query.yahooapis.com/v1/public/yql?q=select%20MarketCapitalization,EBITDA,Name,PERatio,PEGRatio,Symbol%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%27AAPL%27,%20%27GOOG%27%20)%20order%20byMarketCapitalization&format=json&env=http://datatables.org/alltables.env";
-
-    // json array response url
-    private String urlJsonArry = "http://api.androidhive.info/volley/person_array.json";
+    //private String urlJsonObj = "http://query.yahooapis.com/v1/public/yql?q=select%20MarketCapitalization,EBITDA,Name,PERatio,PEGRatio,Symbol%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%27AAPL%27,%20%27GOOG%27%20)%20order%20byMarketCapitalization&format=json&env=http://datatables.org/alltables.env";
+    private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20query%3D%22sushi%22%20and%20location%3D%22san%20francisco%2C%20ca%22%20and%20Rating.AverageRating%3D4&format=json&diagnostics=true&callback=";
 
     private static String TAG = MainActivity.class.getSimpleName();
     private Button btnMakeObjectRequest, btnMakeArrayRequest;
@@ -79,15 +78,18 @@ public class MainActivity extends Activity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
-                        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
                         try {
-                            String name = response.getString("Name");
-                            String symbol = response.getString("Symbol");
+                            JSONObject responseQuery = response.getJSONObject("query");
+                            JSONObject jsonResults = responseQuery.getJSONObject("results");
 
-                            jsonResponse = "";
-                            jsonResponse += "Name: " + name + "\n\n";
-                            jsonResponse += "Email: " + symbol + "\n\n";
+                            /*String name = jsonResults.getString("Name");
+                            String open = jsonResults.getString("Open");
+                            String previusClose = jsonResults.getString("PreviousClose");*/
+                            Toast.makeText(getApplicationContext(), name + open + previusClose, Toast.LENGTH_LONG).show();
 
+
+                            //Toast.makeText(getApplicationContext(), jsonResponse, Toast.LENGTH_LONG).show();
                             //txtResponse.setText(jsonResponse);
                         } catch (JSONException e) {
                             e.printStackTrace();
