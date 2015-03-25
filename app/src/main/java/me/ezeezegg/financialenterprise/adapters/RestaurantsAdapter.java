@@ -16,7 +16,7 @@ import me.ezeezegg.financialenterprise.models.Restaurants;
 /**
  * Created by ezeezegg on 25/03/2015.
  */
-public class RestaurantsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.ViewHolder> {
 
     private ArrayList<Restaurants> restaurantsArrayList;
     private int itemLayout;
@@ -27,6 +27,9 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnClickListener{
+
+        public ImageView image;
+        public TextView title,address,phone;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -46,7 +49,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RestaurantsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
         View itemLayoutView = LayoutInflater.from(viewGroup.getContext()).inflate( itemLayout, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
