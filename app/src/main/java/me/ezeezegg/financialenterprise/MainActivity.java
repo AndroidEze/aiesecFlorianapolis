@@ -26,7 +26,7 @@ import me.ezeezegg.financialenterprise.controllers.AppVolleyController;
 public class MainActivity extends Activity {
 
     // json object response url
-    private String urlJsonObj = "http://api.androidhive.info/volley/person_array.json";
+    private String urlJsonObj = "http://query.yahooapis.com/v1/public/yql?q=select%20MarketCapitalization,EBITDA,Name,PERatio,PEGRatio,Symbol%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%27AAPL%27,%20%27GOOG%27%20)%20order%20byMarketCapitalization&format=json&env=http://datatables.org/alltables.env";
 
     // json array response url
     private String urlJsonArry = "http://api.androidhive.info/volley/person_array.json";
@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
                             jsonResponse += "Name: " + name + "\n\n";
                             jsonResponse += "Email: " + symbol + "\n\n";
 
-                            txtResponse.setText(jsonResponse);
+                            //txtResponse.setText(jsonResponse);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
