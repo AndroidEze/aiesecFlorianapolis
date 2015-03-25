@@ -27,7 +27,7 @@ import me.ezeezegg.financialenterprise.controllers.AppVolleyController;
 public class MainActivity extends Activity {
 
     // json object response url
-    //private String urlJsonObj = "http://query.yahooapis.com/v1/public/yql?q=select%20MarketCapitalization,EBITDA,Name,PERatio,PEGRatio,Symbol%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%27AAPL%27,%20%27GOOG%27%20)%20order%20byMarketCapitalization&format=json&env=http://datatables.org/alltables.env";
+
     private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20query%3D%22sushi%22%20and%20location%3D%22san%20francisco%2C%20ca%22%20and%20Rating.AverageRating%3D4&format=json&diagnostics=true&callback=";
 
     private static String TAG = MainActivity.class.getSimpleName();
@@ -35,13 +35,6 @@ public class MainActivity extends Activity {
 
     // Progress dialog
     private ProgressDialog pDialog;
-
-    // temporary string to show the parsed response
-    private String jsonResponse;
-
-    private TextView txtResponse;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
