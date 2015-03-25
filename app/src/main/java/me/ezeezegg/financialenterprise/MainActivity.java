@@ -82,15 +82,13 @@ public class MainActivity extends Activity {
                         try {
                             JSONObject responseQuery = response.getJSONObject("query");
                             JSONObject jsonResults = responseQuery.getJSONObject("results");
+                            JSONObject jsonResult = jsonResults.getJSONObject("Result");
 
-                            /*String name = jsonResults.getString("Name");
-                            String open = jsonResults.getString("Open");
-                            String previusClose = jsonResults.getString("PreviousClose");*/
-                            Toast.makeText(getApplicationContext(), name + open + previusClose, Toast.LENGTH_LONG).show();
+                            String title = jsonResult.getString("Title");
+                            String address = jsonResult.getString("Address");
+                            String city = jsonResult.getString("City");
+                            Toast.makeText(getApplicationContext(),title+"\n" + address+"\n" + city, Toast.LENGTH_LONG).show();
 
-
-                            //Toast.makeText(getApplicationContext(), jsonResponse, Toast.LENGTH_LONG).show();
-                            //txtResponse.setText(jsonResponse);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(),
@@ -104,7 +102,7 @@ public class MainActivity extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), R.string.app_name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Error sorry", Toast.LENGTH_SHORT).show();
                 // hide the progress dialog
                 hidepDialog();
             }
