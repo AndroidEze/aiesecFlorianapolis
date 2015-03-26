@@ -17,7 +17,6 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:src="@drawable/backend"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
