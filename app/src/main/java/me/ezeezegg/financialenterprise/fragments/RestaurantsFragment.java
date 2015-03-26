@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,8 +40,8 @@ public class RestaurantsFragment extends Fragment {
 
     // json object response url
 
-    private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20query%3D%22sushi%22%20and%20location%3D%22san%20francisco%2C%20ca%22%20and%20Rating.AverageRating%3D4&format=json&diagnostics=true&callback=";
-
+    //private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20query%3D%22sushi%22%20and%20location%3D%22san%20francisco%2C%20ca%22%20and%20Rating.AverageRating%3D4&format=json&diagnostics=true&callback=";
+    private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20zip=%2255429%22%20and%20query=%22lawyer%22&format=json";
     private static String TAG = RestaurantsFragment.class.getSimpleName();
     private Button btnMakeObjectRequest, btnMakeArrayRequest;
 
@@ -112,23 +113,31 @@ public class RestaurantsFragment extends Fragment {
                         try {
                             JSONObject responseQuery = response.getJSONObject("query");
                             JSONObject jsonResults = responseQuery.getJSONObject("results");
-                            JSONObject jsonResult = jsonResults.getJSONObject("Result");
+                            //JSONObject jsonResult = jsonResults.getJSONObject("Result");
+                            JSONArray jsonResult = jsonResults.getJSONArray("Result");
 
-                            Restaurants res = new Restaurants();
 
-                            res.setTitle(jsonResult.getString("Title"));
-                            res.setAddress(jsonResult.getString("Address"));
-                            res.setPhone(jsonResult.getString("Phone"));
-                            res.setPhone(jsonResult.getString("MapUrl"));
+                            for (int i = 0; i < jsonResult.length(); i++) {
+                                Restaurants res = new Restaurants();
+                                JSONObject person = (JSONObject) jsonResult.get(i);
+                                res.setTitle(person.getString("Title"));
+                                res.setAddress(person.getString("Address"));
+                                res.setPhone(person.getString("Phone"));
+                                //res.setPhone(person.getString("MapUrl"));
 
-                            restaurantsAux.add(res);
+                                restaurantsAux.add(res);
+                                System.out.println("------*atentiton*------");
+                                System.out.println(restaurantsAux);
+                            }
+
+
                             Toast.makeText(getActivity(),restaurantsAux.toString(), Toast.LENGTH_LONG).show();
 
 
-                            String title = jsonResult.getString("Title");
+                            /*String title = jsonResult.getString("Title");
                             String address = jsonResult.getString("Address");
                             String city = jsonResult.getString("City");
-                            Toast.makeText(getActivity(),title+"\n" + address+"\n" + city, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),title+"\n" + address+"\n" + city, Toast.LENGTH_LONG).show();*/
 
                         } catch (JSONException e) {
                             e.printStackTrace();
