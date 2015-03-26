@@ -27,4 +27,7 @@ dependencies {
     /*add volley*/
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.mcxiaoke.volley:library:1.0.+'
+
+    /*for images assign in imageview*/
+    compile 'com.koushikdutta.ion:ion:2.+'
 }

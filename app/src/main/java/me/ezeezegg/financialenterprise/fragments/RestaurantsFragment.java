@@ -119,6 +119,7 @@ public class RestaurantsFragment extends Fragment {
                             res.setTitle(jsonResult.getString("Title"));
                             res.setAddress(jsonResult.getString("Address"));
                             res.setPhone(jsonResult.getString("Phone"));
+                            res.setPhone(jsonResult.getString("MapUrl"));
 
                             restaurantsAux.add(res);
                             Toast.makeText(getActivity(),restaurantsAux.toString(), Toast.LENGTH_LONG).show();
