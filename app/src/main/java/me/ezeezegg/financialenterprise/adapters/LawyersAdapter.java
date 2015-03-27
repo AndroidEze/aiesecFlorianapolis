@@ -11,18 +11,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import me.ezeezegg.financialenterprise.R;
-import me.ezeezegg.financialenterprise.models.Restaurants;
+import me.ezeezegg.financialenterprise.models.Lawyers;
 
 /**
  * Created by ezeezegg on 25/03/2015.
  */
-public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.ViewHolder> {
+public class LawyersAdapter extends RecyclerView.Adapter<LawyersAdapter.ViewHolder> {
 
-    private ArrayList<Restaurants> restaurantsArrayList;
+    private ArrayList<Lawyers> lawyersArrayList;
     private int itemLayout;
 
-    public RestaurantsAdapter(ArrayList<Restaurants> data, int itemLayout){
-        restaurantsArrayList = data;
+    public LawyersAdapter(ArrayList<Lawyers> data, int itemLayout){
+        lawyersArrayList = data;
         this.itemLayout = itemLayout;
     }
 
@@ -49,7 +49,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     }
 
     @Override
-    public RestaurantsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public LawyersAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
         View itemLayoutView = LayoutInflater.from(viewGroup.getContext()).inflate( itemLayout, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
@@ -57,16 +57,16 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(RestaurantsAdapter.ViewHolder viewHolder, int i) {
-        Restaurants restaurants = restaurantsArrayList.get(i);
-        viewHolder.title.setText(restaurants.getTitle());
-        viewHolder.address.setText(restaurants.getAddress());
-        viewHolder.phone.setText(restaurants.getPhone());
-        viewHolder.itemView.setTag(restaurants);
+    public void onBindViewHolder(LawyersAdapter.ViewHolder viewHolder, int i) {
+        Lawyers lawyers = lawyersArrayList.get(i);
+        viewHolder.title.setText(lawyers.getTitle());
+        viewHolder.address.setText(lawyers.getAddress());
+        viewHolder.phone.setText(lawyers.getPhone());
+        viewHolder.itemView.setTag(lawyers);
     }
 
     @Override
     public int getItemCount() {
-        return restaurantsArrayList.size();
+        return lawyersArrayList.size();
     }
 }

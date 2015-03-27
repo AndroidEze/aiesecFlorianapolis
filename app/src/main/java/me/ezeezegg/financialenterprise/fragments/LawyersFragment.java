@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -31,24 +30,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import me.ezeezegg.financialenterprise.R;
-import me.ezeezegg.financialenterprise.adapters.RestaurantsAdapter;
+import me.ezeezegg.financialenterprise.adapters.LawyersAdapter;
 import me.ezeezegg.financialenterprise.controllers.AppVolleyController;
-import me.ezeezegg.financialenterprise.models.Restaurants;
+import me.ezeezegg.financialenterprise.models.Lawyers;
 
 
-public class RestaurantsFragment extends Fragment {
+public class LawyersFragment extends Fragment {
 
     // json object response url
-
     //private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20query%3D%22sushi%22%20and%20location%3D%22san%20francisco%2C%20ca%22%20and%20Rating.AverageRating%3D4&format=json&diagnostics=true&callback=";
     private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20zip=%2255429%22%20and%20query=%22lawyer%22&format=json";
-    private static String TAG = RestaurantsFragment.class.getSimpleName();
+    private static String TAG = LawyersFragment.class.getSimpleName();
     private Button btnMakeObjectRequest, btnMakeArrayRequest;
 
     // Progress dialog
     private ProgressDialog pDialog;
-
-    ArrayList<Restaurants> restaurantsAux = new ArrayList<Restaurants>();
+    //Arraylist temporal
+    ArrayList<Lawyers> lawyersAux = new ArrayList<Lawyers>();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -58,48 +56,35 @@ public class RestaurantsFragment extends Fragment {
         pDialog.setCancelable(false);
 
         //ReclyclerView, Adapter
-
-        restaurantsAux = makeJsonObjectRequest();
+        lawyersAux = getJsonVolley();
 
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new RestaurantsAdapter(restaurantsAux, R.layout.row));
-
-
+        recyclerView.setAdapter(new LawyersAdapter(lawyersAux, R.layout.lawyers_row));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        //Por si quieren configurar algom como Grilla solo cambian la linea de arriba por esta:
         //recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
-
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
         //Float Button
 
         final int size = getResources().getDimensionPixelSize(R.dimen.fab_size);
         final ImageButton imageButton = (ImageButton) getActivity().findViewById(R.id.fab_1);
 
-
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Mejorando.la: Aprende a crear el futuro de la Web",
+                Toast.makeText(getActivity(), "other view",
                         Toast.LENGTH_LONG).show();
-
-
             }
         });
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.restaurants_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.lawyers_fragment, container, false);
         return rootView;
     }
-    private ArrayList<Restaurants> makeJsonObjectRequest() {
+    private ArrayList<Lawyers> getJsonVolley() {
         showpDialog();
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlJsonObj,(String) null,
@@ -116,28 +101,17 @@ public class RestaurantsFragment extends Fragment {
                             //JSONObject jsonResult = jsonResults.getJSONObject("Result");
                             JSONArray jsonResult = jsonResults.getJSONArray("Result");
 
-
                             for (int i = 0; i < jsonResult.length(); i++) {
-                                Restaurants res = new Restaurants();
+                                Lawyers res = new Lawyers();
                                 JSONObject person = (JSONObject) jsonResult.get(i);
                                 res.setTitle(person.getString("Title"));
                                 res.setAddress(person.getString("Address"));
                                 res.setPhone(person.getString("Phone"));
                                 //res.setPhone(person.getString("MapUrl"));
 
-                                restaurantsAux.add(res);
-                                System.out.println("------*atentiton*------");
-                                System.out.println(restaurantsAux);
+                                lawyersAux.add(res);
                             }
-
-
-                            Toast.makeText(getActivity(),restaurantsAux.toString(), Toast.LENGTH_LONG).show();
-
-
-                            /*String title = jsonResult.getString("Title");
-                            String address = jsonResult.getString("Address");
-                            String city = jsonResult.getString("City");
-                            Toast.makeText(getActivity(),title+"\n" + address+"\n" + city, Toast.LENGTH_LONG).show();*/
+                            //Toast.makeText(getActivity(),restaurantsAux.toString(), Toast.LENGTH_LONG).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -158,7 +132,7 @@ public class RestaurantsFragment extends Fragment {
             }
         });
         AppVolleyController.getInstance().addToRequestQueue(jsonObjReq);
-        return restaurantsAux;
+        return lawyersAux;
     }
 
 

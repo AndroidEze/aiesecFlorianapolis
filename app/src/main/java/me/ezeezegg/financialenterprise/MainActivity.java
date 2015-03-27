@@ -2,7 +2,7 @@ package me.ezeezegg.financialenterprise;
 
 import android.app.Activity;
 import android.os.Bundle;
-import me.ezeezegg.financialenterprise.fragments.RestaurantsFragment;
+import me.ezeezegg.financialenterprise.fragments.LawyersFragment;
 
 public class MainActivity extends Activity {
 
@@ -13,11 +13,9 @@ public class MainActivity extends Activity {
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new RestaurantsFragment())
+                    .add(R.id.container, new LawyersFragment())
                     .commit();
         }
 
     }
-
-
 }

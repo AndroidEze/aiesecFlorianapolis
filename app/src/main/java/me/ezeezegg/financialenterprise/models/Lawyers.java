@@ -3,7 +3,7 @@ package me.ezeezegg.financialenterprise.models;
 /**
  * Created by ezeezegg on 25/03/2015.
  */
-public class Restaurants {
+public class Lawyers {
     private Integer id;
     private String title;
     private String address;
