@@ -59,7 +59,7 @@ public class infoFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new infoAdapter(infoAux, R.layout.lawyers_row));
+        recyclerView.setAdapter(new infoAdapter(infoAux, R.layout.info_row));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -80,7 +80,7 @@ public class infoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.lawyers_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.info_fragment, container, false);
         return rootView;
     }
     private ArrayList<Info> getJsonVolley() {

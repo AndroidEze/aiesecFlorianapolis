@@ -29,7 +29,8 @@ public class infoAdapter extends RecyclerView.Adapter<infoAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnClickListener{
 
         public ImageView image;
-        public TextView title,address,phone;
+        public TextView title,date,authors;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -37,8 +38,8 @@ public class infoAdapter extends RecyclerView.Adapter<infoAdapter.ViewHolder> {
             itemView.setOnClickListener(this);
             image = (ImageView) itemView.findViewById(R.id.image);
             title = (TextView) itemView.findViewById(R.id.title);
-            address = (TextView) itemView.findViewById(R.id.address);
-            phone = (TextView) itemView.findViewById(R.id.phone);
+            authors = (TextView) itemView.findViewById(R.id.address);
+            date = (TextView) itemView.findViewById(R.id.date);
 
         }
 
@@ -60,8 +61,8 @@ public class infoAdapter extends RecyclerView.Adapter<infoAdapter.ViewHolder> {
     public void onBindViewHolder(infoAdapter.ViewHolder viewHolder, int i) {
         Info info = infoArrayList.get(i);
         viewHolder.title.setText(info.getTitle());
-        viewHolder.address.setText(info.getAddress());
-        viewHolder.phone.setText(info.getPhone());
+        viewHolder.authors.setText(info.getAuthors());
+        viewHolder.date.setText(info.getDate());
         viewHolder.itemView.setTag(info);
     }
 
