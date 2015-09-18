@@ -38,8 +38,8 @@ import me.ezeezegg.financialenterprise.models.Lawyers;
 public class LawyersFragment extends Fragment {
 
     // json object response url
-    //private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20query%3D%22sushi%22%20and%20location%3D%22san%20francisco%2C%20ca%22%20and%20Rating.AverageRating%3D4&format=json&diagnostics=true&callback=";
-    private String urlJsonObj = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20local.search%20where%20zip=%2255429%22%20and%20query=%22lawyer%22&format=json";
+    //add Url json AIESEC
+    private String urlJsonObj = "http://www.ckl.io/challenge/";
     private static String TAG = LawyersFragment.class.getSimpleName();
     private Button btnMakeObjectRequest, btnMakeArrayRequest;
 
