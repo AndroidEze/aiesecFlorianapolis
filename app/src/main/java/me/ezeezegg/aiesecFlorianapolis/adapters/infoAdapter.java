@@ -1,4 +1,4 @@
-package me.ezeezegg.financialenterprise.adapters;
+package me.ezeezegg.aiesecFlorianapolis.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,19 +10,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import me.ezeezegg.financialenterprise.R;
-import me.ezeezegg.financialenterprise.models.Lawyers;
+import me.ezeezegg.aiesecFlorianapolis.R;
+import me.ezeezegg.aiesecFlorianapolis.models.Info;
 
 /**
  * Created by ezeezegg on 25/03/2015.
  */
-public class LawyersAdapter extends RecyclerView.Adapter<LawyersAdapter.ViewHolder> {
+public class infoAdapter extends RecyclerView.Adapter<infoAdapter.ViewHolder> {
 
-    private ArrayList<Lawyers> lawyersArrayList;
+    private ArrayList<Info> infoArrayList;
     private int itemLayout;
 
-    public LawyersAdapter(ArrayList<Lawyers> data, int itemLayout){
-        lawyersArrayList = data;
+    public infoAdapter(ArrayList<Info> data, int itemLayout){
+        infoArrayList = data;
         this.itemLayout = itemLayout;
     }
 
@@ -49,7 +49,7 @@ public class LawyersAdapter extends RecyclerView.Adapter<LawyersAdapter.ViewHold
     }
 
     @Override
-    public LawyersAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public infoAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
         View itemLayoutView = LayoutInflater.from(viewGroup.getContext()).inflate( itemLayout, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
@@ -57,16 +57,16 @@ public class LawyersAdapter extends RecyclerView.Adapter<LawyersAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(LawyersAdapter.ViewHolder viewHolder, int i) {
-        Lawyers lawyers = lawyersArrayList.get(i);
-        viewHolder.title.setText(lawyers.getTitle());
-        viewHolder.address.setText(lawyers.getAddress());
-        viewHolder.phone.setText(lawyers.getPhone());
-        viewHolder.itemView.setTag(lawyers);
+    public void onBindViewHolder(infoAdapter.ViewHolder viewHolder, int i) {
+        Info info = infoArrayList.get(i);
+        viewHolder.title.setText(info.getTitle());
+        viewHolder.address.setText(info.getAddress());
+        viewHolder.phone.setText(info.getPhone());
+        viewHolder.itemView.setTag(info);
     }
 
     @Override
     public int getItemCount() {
-        return lawyersArrayList.size();
+        return infoArrayList.size();
     }
 }

@@ -1,4 +1,4 @@
-package me.ezeezegg.financialenterprise.fragments;
+package me.ezeezegg.aiesecFlorianapolis.fragments;
 
 /**
  * Created by egarcia on 3/26/15.
@@ -23,30 +23,29 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import me.ezeezegg.financialenterprise.R;
-import me.ezeezegg.financialenterprise.adapters.LawyersAdapter;
-import me.ezeezegg.financialenterprise.controllers.AppVolleyController;
-import me.ezeezegg.financialenterprise.models.Lawyers;
+import me.ezeezegg.aiesecFlorianapolis.R;
+import me.ezeezegg.aiesecFlorianapolis.adapters.infoAdapter;
+import me.ezeezegg.aiesecFlorianapolis.controllers.AppVolleyController;
+import me.ezeezegg.aiesecFlorianapolis.models.Info;
 
 
-public class LawyersFragment extends Fragment {
+public class infoFragment extends Fragment {
 
     // json object response url
     //add Url json AIESEC
     private String urlJsonObj = "http://www.ckl.io/challenge/";
-    private static String TAG = LawyersFragment.class.getSimpleName();
+    private static String TAG = infoFragment.class.getSimpleName();
     private Button btnMakeObjectRequest, btnMakeArrayRequest;
 
     // Progress dialog
     private ProgressDialog pDialog;
     //Arraylist temporal
-    ArrayList<Lawyers> lawyersAux = new ArrayList<Lawyers>();
+    ArrayList<Info> infoAux = new ArrayList<Info>();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -56,11 +55,11 @@ public class LawyersFragment extends Fragment {
         pDialog.setCancelable(false);
 
         //ReclyclerView, Adapter
-        lawyersAux = getJsonVolley();
+        infoAux = getJsonVolley();
 
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new LawyersAdapter(lawyersAux, R.layout.lawyers_row));
+        recyclerView.setAdapter(new infoAdapter(infoAux, R.layout.lawyers_row));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -84,7 +83,7 @@ public class LawyersFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.lawyers_fragment, container, false);
         return rootView;
     }
-    private ArrayList<Lawyers> getJsonVolley() {
+    private ArrayList<Info> getJsonVolley() {
         showpDialog();
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlJsonObj,(String) null,
@@ -102,7 +101,7 @@ public class LawyersFragment extends Fragment {
                             //JSONArray jsonResult = jsonResults.getJSONArray("Result");
 
                             for (int i = 0; i < response.length(); i++) {
-                                Lawyers res = new Lawyers();
+                                Info res = new Info();
                                 JSONObject jsonObject = response.getJSONObject(String.valueOf(i));
                                 res.setTitle(jsonObject.getString("title"));
                                 res.setAddress(jsonObject.getString("date"));
@@ -110,7 +109,7 @@ public class LawyersFragment extends Fragment {
                                 res.setPhone(jsonObject.getString("image"));
                                 //res.setPhone(person.getString("MapUrl"));
 
-                                lawyersAux.add(res);
+                                infoAux.add(res);
                             }
                             //Toast.makeText(getActivity(),restaurantsAux.toString(), Toast.LENGTH_LONG).show();
 
@@ -133,7 +132,7 @@ public class LawyersFragment extends Fragment {
             }
         });
         AppVolleyController.getInstance().addToRequestQueue(jsonObjReq);
-        return lawyersAux;
+        return infoAux;
     }
 
 

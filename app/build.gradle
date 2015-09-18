@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "me.ezeezegg.financialenterprise"
+        applicationId "me.ezeezegg.aiesecFlorianapolis"
         minSdkVersion 21
         targetSdkVersion 21
         versionCode 1

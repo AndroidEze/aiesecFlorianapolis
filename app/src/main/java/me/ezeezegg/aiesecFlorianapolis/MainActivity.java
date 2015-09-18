@@ -1,8 +1,8 @@
-package me.ezeezegg.financialenterprise;
+package me.ezeezegg.aiesecFlorianapolis;
 
 import android.app.Activity;
 import android.os.Bundle;
-import me.ezeezegg.financialenterprise.fragments.LawyersFragment;
+import me.ezeezegg.aiesecFlorianapolis.fragments.infoFragment;
 
 public class MainActivity extends Activity {
 
@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new LawyersFragment())
+                    .add(R.id.container, new infoFragment())
                     .commit();
         }
 

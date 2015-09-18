@@ -1,4 +1,4 @@
-package me.ezeezegg.financialenterprise;
+package me.ezeezegg.aiesecFlorianapolis;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

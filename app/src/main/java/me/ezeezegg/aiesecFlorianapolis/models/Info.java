@@ -1,9 +1,9 @@
-package me.ezeezegg.financialenterprise.models;
+package me.ezeezegg.aiesecFlorianapolis.models;
 
 /**
  * Created by ezeezegg on 25/03/2015.
  */
-public class Lawyers {
+public class Info {
     private Integer id;
     private String title;
     private String address;

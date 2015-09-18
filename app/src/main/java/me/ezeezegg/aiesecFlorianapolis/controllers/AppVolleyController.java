@@ -1,4 +1,4 @@
-package me.ezeezegg.financialenterprise.controllers;
+package me.ezeezegg.aiesecFlorianapolis.controllers;
 
 /**
  * Created by egarcia on 3/24/15.
