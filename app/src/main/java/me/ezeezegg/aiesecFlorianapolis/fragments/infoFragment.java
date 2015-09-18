@@ -104,9 +104,9 @@ public class infoFragment extends Fragment {
                                 Info res = new Info();
                                 JSONObject jsonObject = response.getJSONObject(String.valueOf(i));
                                 res.setTitle(jsonObject.getString("title"));
-                                res.setAddress(jsonObject.getString("date"));
-                                res.setPhone(jsonObject.getString("authors"));
-                                res.setPhone(jsonObject.getString("image"));
+                                res.setDate(jsonObject.getString("date"));
+                                res.setAuthors(jsonObject.getString("authors"));
+                                res.setImage(jsonObject.getString("image"));
                                 //res.setPhone(person.getString("MapUrl"));
 
                                 infoAux.add(res);
