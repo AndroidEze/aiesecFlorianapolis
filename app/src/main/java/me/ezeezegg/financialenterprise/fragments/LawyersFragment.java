@@ -96,17 +96,18 @@ public class LawyersFragment extends Fragment {
 
                         //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
                         try {
-                            JSONObject responseQuery = response.getJSONObject("query");
-                            JSONObject jsonResults = responseQuery.getJSONObject("results");
+                            //JSONObject responseQuery = response.getJSONObject("query");
+                            //JSONObject jsonResults = responseQuery.getJSONObject("results");
                             //JSONObject jsonResult = jsonResults.getJSONObject("Result");
-                            JSONArray jsonResult = jsonResults.getJSONArray("Result");
+                            //JSONArray jsonResult = jsonResults.getJSONArray("Result");
 
-                            for (int i = 0; i < jsonResult.length(); i++) {
+                            for (int i = 0; i < response.length(); i++) {
                                 Lawyers res = new Lawyers();
-                                JSONObject person = (JSONObject) jsonResult.get(i);
-                                res.setTitle(person.getString("Title"));
-                                res.setAddress(person.getString("Address"));
-                                res.setPhone(person.getString("Phone"));
+                                JSONObject jsonObject = response.getJSONObject(String.valueOf(i));
+                                res.setTitle(jsonObject.getString("title"));
+                                res.setAddress(jsonObject.getString("date"));
+                                res.setPhone(jsonObject.getString("authors"));
+                                res.setPhone(jsonObject.getString("image"));
                                 //res.setPhone(person.getString("MapUrl"));
 
                                 lawyersAux.add(res);
